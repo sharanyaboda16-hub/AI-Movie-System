@@ -1,0 +1,16 @@
+com\movie\entity\Review.class
+com\movie\entity\Movie.class
+com\movie\repository\UserRepository.class
+com\movie\controller\RecommendationController.class
+com\movie\controller\TmdbController.class
+com\movie\repository\MovieRepository.class
+com\movie\controller\UserController.class
+com\movie\controller\MovieController.class
+com\movie\MovieApplication.class
+com\movie\service\RecommendationService.class
+com\movie\entity\User.class
+com\movie\service\UserService.class
+com\movie\service\ReviewService.class
+com\movie\service\MovieService.class
+com\movie\controller\ReviewController.class
+com\movie\repository\ReviewRepository.class

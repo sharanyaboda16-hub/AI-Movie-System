@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations | Movie Recommendation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🤖 Movie Recommendation System</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="users.html">Users</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="recommendations.html">Recommendations</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>🎯 Get Movie Recommendations</h2>
+
+            <form id="recommendationForm">
+                <input
+                    type="number"
+                    id="recommendationUserId"
+                    placeholder="Enter Registered User ID"
+                    min="1"
+                    required
+                >
+
+                <button type="submit">Get Recommendations</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>🍿 Recommended Movies</h2>
+            <div id="recommendations">
+                <p>Enter your user ID to get recommendations.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="recommendations.js"></script>
+</body>
+</html>

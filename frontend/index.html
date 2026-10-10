@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMate | Movie Dashboard</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #090d18;
+            --panel: #121a2b;
+            --text: #f5f7ff;
+            --muted: #9ba8c1;
+            --accent: #8b5cf6;
+            --cyan: #22d3ee;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 22px 7%;
+            border-bottom: 1px solid #202a40;
+            background: rgba(9, 13, 24, 0.95);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+        }
+
+        .profile {
+            background: #241d45;
+            border: 1px solid #49358a;
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        main {
+            width: 86%;
+            max-width: 1450px;
+            margin: 35px auto 60px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 370px;
+            display: flex;
+            align-items: center;
+            border-radius: 25px;
+            padding: 55px;
+            background:
+                linear-gradient(90deg, #111629 0%, #111629ee 43%, #11162922 100%),
+                url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=85')
+                center/cover;
+            border: 1px solid #29334c;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            color: #c4b5fd;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(35px, 5vw, 58px);
+            line-height: 1.12;
+            margin-bottom: 18px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: #a78bfa;
+        }
+
+        .hero p {
+            color: #c0c8da;
+            line-height: 1.8;
+            max-width: 500px;
+            font-size: 15px;
+            margin-bottom: 28px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #ffffff12;
+            border: 1px solid #ffffff30;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.15);
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 38px 0 20px;
+        }
+
+        .section-heading h2 {
+            font-size: 22px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        .status {
+            font-size: 12px;
+            color: #86efac;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .stat-card {
+            padding: 25px;
+            border: 1px solid #253049;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #151e31, #101626);
+            transition: 0.25s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: #7655cb;
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .stat-icon {
+            display: grid;
+            place-items: center;
+            width: 43px;
+            height: 43px;
+            border-radius: 13px;
+            background: #8b5cf626;
+            font-size: 21px;
+        }
+
+        .stat-number {
+            font-size: 34px;
+            font-weight: 800;
+            margin-top: 23px;
+        }
+
+        .stat-note {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .feature-card {
+            display: block;
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #253049;
+            background: var(--panel);
+            transition: 0.25s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: #192239;
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+            min-height: 44px;
+        }
+
+        .feature-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #c4b5fd;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .footer {
+            text-align: center;
+            color: #74819a;
+            border-top: 1px solid #202a40;
+            padding: 25px 10px;
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+            main {
+                width: 92%;
+            }
+
+            .navbar {
+                padding: 20px 4%;
+            }
+
+            .hero {
+                padding: 35px;
+            }
+
+            .stats-grid,
+            .features-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            .navbar {
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .profile {
+                display: none;
+            }
+
+            .hero {
+                padding: 28px 22px;
+                min-height: 380px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .stats-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+        
+.trending-section {
+    margin-top: 40px;
+}
+
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 20px;
+}
+
+.trending-card {
+    overflow: hidden;
+    background: #121a2b;
+    border: 1px solid #29334c;
+    border-radius: 15px;
+    transition: transform 0.2s ease;
+}
+
+.trending-card:hover {
+    transform: translateY(-5px);
+}
+
+.trending-poster {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background: #202a40;
+}
+
+.trending-info {
+    padding: 14px;
+}
+
+.trending-info h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.trending-rating {
+    color: #fbbf24;
+    font-size: 13px;
+}
+
+.trending-year,
+.trending-message {
+    color: #9ba8c1;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+@media (max-width: 560px) {
+    .trending-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">Cine<span>Mate</span> 🎬</a>
+
+        <nav class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="movies.html">Movies</a>
+            <a href="recommendations.html">Recommendations</a>
+            <a href="reviews.html">Reviews</a>
+        </nav>
+
+        <div class="profile">🍿 Movie Dashboard</div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">Your personal cinema hub</div>
+
+                <h1>Discover movies.<br>
+                    Find your <span>next favourite.</span>
+                </h1>
+
+                <p>
+                    Explore movies, discover personalized recommendations,
+                    share your reviews, and find your next unforgettable
+                    movie experience.
+                </p>
+
+                <div class="buttons">
+                    <a href="movies.html" class="btn btn-primary">
+                        🎬 Explore Movies
+                    </a>
+
+                    <a href="recommendations.html" class="btn btn-secondary">
+                        ✨ Get Recommendations
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <div>
+                    <h2>Your Dashboard</h2>
+                    <p>A quick overview of your movie platform.</p>
+                </div>
+
+                <span class="status" id="connectionStatus">
+                    ● Connecting...
+                </span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Available Movies</span>
+                        <div class="stat-icon">🎞️</div>
+                    </div>
+                    <div class="stat-number" id="movieCount">—</div>
+                    <div class="stat-note">Movies in your database</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Total Reviews</span>
+                        <div class="stat-icon">⭐</div>
+                    </div>
+                    <div class="stat-number" id="reviewCount">—</div>
+                    <div class="stat-note">Reviews shared by users</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Platform Status</span>
+                        <div class="stat-icon">🚀</div>
+                    </div>
+                    <div class="stat-number" id="platformStatus"
+                         style="font-size: 25px;">Checking</div>
+                    <div class="stat-note">Backend connection</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-heading">
+                <div>
+                    <h2>Explore Features</h2>
+                    <p>Everything you need in one place.</p>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <a href="movies.html" class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Movie Library</h3>
+                    <p>Browse available movies, view posters, search titles,
+                       and manage your movie collection.</p>
+                    <span class="feature-link">Explore movies →</span>
+                </a>
+
+                <a href="recommendations.html" class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Smart Recommendations</h3>
+                    <p>Discover movie suggestions based on your preferences
+                       and the recommendation system.</p>
+                    <span class="feature-link">Find movies →</span>
+                </a>
+
+                <a href="reviews.html" class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Reviews & Ratings</h3>
+                    <p>Read movie reviews, share your thoughts, and rate
+                       movies you have watched.</p>
+                    <span class="feature-link">View reviews →</span>
+                </a>
+            </div>
+        </section>
+        
+<section class="trending-section">
+    <div class="section-heading">
+        <div>
+            <h2>🔥 Trending Movies</h2>
+            <p>Discover popular movies and their ratings.</p>
+        </div>
+        <a href="movies.html" class="btn btn-primary">View All Movies →</a>
+    </div>
+
+    <div id="trendingMovies" class="trending-grid">
+        <p class="trending-message">Loading movies...</p>
+    </div>
+</section>
+
+    </main> 
+
+    <footer class="footer">
+        © 2026 CineMate · AI-Powered Movie Recommendation & Review System
+    </footer>
+
+    <script>
+        const BACKEND_URL = "http://localhost:8080";
+
+        async function loadDashboard() {
+            const status = document.getElementById("connectionStatus");
+            const platformStatus = document.getElementById("platformStatus");
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/movies`);
+
+                if (!response.ok) {
+                    throw new Error("Movies API unavailable");
+                }
+
+                const movies = await response.json();
+
+                document.getElementById("movieCount").textContent =
+                    movies.length;
+
+                status.textContent = "● Backend connected";
+                status.style.color = "#86efac";
+                platformStatus.textContent = "Online";
+                platformStatus.style.color = "#86efac";
+            } catch (error) {
+                console.error("Dashboard movie count error:", error);
+
+                document.getElementById("movieCount").textContent = "—";
+                status.textContent = "● Backend offline";
+                status.style.color = "#fca5a5";
+                platformStatus.textContent = "Offline";
+                platformStatus.style.color = "#fca5a5";
+            }
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/reviews`);
+
+                if (!response.ok) {
+                    throw new Error("Reviews API unavailable");
+                }
+
+                const reviews = await response.json();
+
+                document.getElementById("reviewCount").textContent =
+                    reviews.length;
+            } catch (error) {
+                console.error("Dashboard review count error:", error);
+                document.getElementById("reviewCount").textContent = "—";
+            }
+        }
+
+        loadDashboard();
+        
+
+async function loadTrendingMovies() {
+    const container = document.getElementById("trendingMovies");
+
+    if (!container) {
+        console.error("trendingMovies container not found");
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            "http://localhost:8080/api/tmdb/trending"
+        );
+
+        if (!response.ok) {
+            throw new Error("TMDB request failed: " + response.status);
+        }
+
+        const data = await response.json();
+
+        // TMDB response contains movies inside data.results
+        const movies = Array.isArray(data)
+            ? data
+            : (data.results || data.movies || []);
+
+        if (movies.length === 0) {
+            container.innerHTML =
+                '<p class="trending-message">No movies found.</p>';
+            return;
+        }
+
+        container.innerHTML = movies.slice(0, 8).map(movie => {
+            const title = movie.title || movie.name || "Untitled";
+
+            const rawPoster =
+                movie.poster_path ||
+                movie.posterPath ||
+                movie.posterUrl ||
+                "";
+
+            const poster = rawPoster
+                ? (rawPoster.startsWith("http")
+                    ? rawPoster
+                    : "https://image.tmdb.org/t/p/w500" + rawPoster)
+                : "https://placehold.co/300x450/121a2b/ffffff?text=No+Poster";
+
+            const rating = Number(
+                movie.vote_average ?? movie.rating ?? 0
+            ).toFixed(1);
+
+            const safeTitle = String(title).replace(/[&<>"']/g, char => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[char]);
+
+            const year = movie.release_date
+                ? movie.release_date.slice(0, 4)
+                : "";
+
+            return `
+                <article class="trending-card">
+                    <img
+                        class="trending-poster"
+                        src="${poster}"
+                        alt="${safeTitle}"
+                        loading="lazy"
+                        onerror="this.onerror=null;this.src='https://placehold.co/300x450/121a2b/ffffff?text=No+Poster'"
+                    >
+
+                    <div class="trending-info">
+                        <h3>${safeTitle}</h3>
+                        <div class="trending-rating">
+                            ⭐ ${rating}/10
+                        </div>
+                        <div class="trending-year">${year}</div>
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+    } catch (error) {
+        console.error("Error loading trending movies:", error);
+
+        container.innerHTML =
+            '<p class="trending-message">Unable to load trending movies. Check whether the backend is running.</p>';
+    }
+}
+
+loadTrendingMovies();
+
+    </script>
+
+</body>
+</html>

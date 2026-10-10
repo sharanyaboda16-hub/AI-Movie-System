@@ -1,0 +1,16 @@
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\controller\MovieController.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\controller\RecommendationController.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\controller\ReviewController.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\controller\TmdbController.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\controller\UserController.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\entity\Movie.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\entity\Review.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\entity\User.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\MovieApplication.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\repository\MovieRepository.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\repository\ReviewRepository.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\repository\UserRepository.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\service\MovieService.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\service\RecommendationService.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\service\ReviewService.java
+C:\Users\SHARANYA\AI Movie\backend\src\main\java\com\movie\service\UserService.java

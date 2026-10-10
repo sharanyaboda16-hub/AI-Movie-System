@@ -1,0 +1,413 @@
+
+/* ===== Global Styles ===== */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080d19;
+    --surface: #111a2b;
+    --surface-light: #172338;
+    --border: #28364d;
+    --text: #f8fafc;
+    --muted: #a8b5c9;
+    --blue: #6366f1;
+    --gold: #fbbf24;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background:
+        radial-gradient(ellipse at top, #172554 0%, transparent 45%),
+        var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ===== Header and Navigation ===== */
+header {
+    background: rgba(12, 19, 34, 0.96);
+    padding: 22px 5%;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+
+header h1 {
+    margin: 0 0 20px;
+    color: #ffffff;
+    font-size: clamp(25px, 4vw, 36px);
+    letter-spacing: -0.5px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+nav a {
+    color: #c7d2fe;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+nav a:hover {
+    color: white;
+    background: #283451;
+}
+
+/* ===== Main Layout ===== */
+main {
+    width: 100%;
+    max-width: 1440px;
+    margin: 35px auto;
+    padding: 0 24px;
+}
+
+section {
+    background: rgba(17, 26, 43, 0.92);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 26px;
+    margin-bottom: 28px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
+}
+
+h2 {
+    color: var(--text);
+    margin: 5px 0 24px;
+    font-size: clamp(21px, 3vw, 28px);
+}
+
+h3 {
+    line-height: 1.4;
+}
+
+p {
+    color: #d4deed;
+    line-height: 1.7;
+}
+
+/* ===== Forms ===== */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+input,
+select,
+textarea {
+    flex: 1;
+    min-width: 180px;
+    padding: 13px 15px;
+    border: 1px solid #36445c;
+    border-radius: 10px;
+    background: #0b1322;
+    color: white;
+    font: inherit;
+    outline: none;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #8291a8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+label {
+    color: #dbeafe;
+    align-self: center;
+}
+
+/* ===== Buttons ===== */
+button {
+    padding: 13px 21px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1, #4338ca);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+button:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ===== Movie Grids ===== */
+#movies,
+#tmdbMovies,
+#recommendations,
+#reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+#movies > p,
+#tmdbMovies > p,
+#recommendations > p,
+#reviews > p {
+    grid-column: 1 / -1;
+}
+
+/* ===== Movie, Review and User Cards ===== */
+.movie-card,
+.user-card,
+.review-card {
+    min-width: 0;
+    background: linear-gradient(160deg, #172338, #0e1727);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 19px;
+    margin: 0;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s,
+                box-shadow 0.25s;
+}
+
+.movie-card:hover,
+.user-card:hover,
+.review-card:hover {
+    transform: translateY(-4px);
+    border-color: #5965a8;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+
+.movie-card h3,
+.user-card h3,
+.review-card h3 {
+    color: #c7d2fe;
+    margin: 5px 0 12px;
+}
+
+.movie-card p,
+.user-card p,
+.review-card p {
+    overflow-wrap: anywhere;
+}
+
+/* ===== Movie Posters ===== */
+.movie-poster,
+.recommendation-poster,
+.tmdb-poster {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    background: #202c40;
+    border-radius: 12px;
+    margin: 0 0 15px;
+}
+
+.recommendation-poster {
+    width: 125px;
+    min-width: 125px;
+    aspect-ratio: auto;
+    height: 188px;
+    margin: 0;
+}
+
+.movie-card-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.movie-card-content h3 {
+    margin-top: 2px;
+}
+
+/* ===== Star Ratings ===== */
+.movie-stars {
+    color: var(--gold);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 8px 0;
+}
+
+.rating-badge {
+    display: inline-block;
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    color: var(--gold);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.movie-details {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.movie-description {
+    color: #d4deed;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* ===== Recommendations ===== */
+#recommendations .movie-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 17px;
+}
+
+#recommendations .movie-poster {
+    width: 125px;
+    min-width: 125px;
+    height: 188px;
+    aspect-ratio: auto;
+    margin: 0;
+}
+
+/* ===== TMDB Search Cards ===== */
+#tmdbMovies .movie-card {
+    background: linear-gradient(160deg, #172338, #0e1727);
+}
+
+#tmdbMovies .movie-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 14px;
+}
+
+/* ===== Review Cards ===== */
+#reviews .movie-card {
+    border-left: 3px solid #818cf8;
+}
+
+#reviews .movie-card button {
+    margin-top: 10px;
+}
+
+/* ===== Links and Focus ===== */
+a,
+button,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+/* ===== Tablet and Mobile ===== */
+@media (max-width: 700px) {
+    header {
+        padding: 20px 16px;
+    }
+
+    nav {
+        gap: 6px;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 9px 10px;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    section {
+        padding: 17px;
+        border-radius: 14px;
+    }
+
+    #movies,
+    #tmdbMovies,
+    #recommendations,
+    #reviews {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .movie-card,
+    .user-card,
+    .review-card {
+        padding: 12px;
+    }
+
+    #recommendations .movie-card {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #recommendations .movie-poster,
+    .recommendation-poster {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        aspect-ratio: 2 / 3;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    input,
+    select,
+    textarea,
+    form button {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 380px) {
+    #movies,
+    #tmdbMovies,
+    #recommendations,
+    #reviews {
+        grid-template-columns: 1fr;
+    }
+}
